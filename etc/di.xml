@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Websolute spa. All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Websolute\TransporterUpload\Api\UploadRepositoryInterface" type="Websolute\TransporterUpload\Model\UploadRepository"/>
+    <preference for="Websolute\TransporterUpload\Api\Data\UploadInterface" type="Websolute\TransporterUpload\Model\UploadModel"/>
+    <preference for="Websolute\TransporterUpload\Api\Data\UploadSearchResultInterface" type="Websolute\TransporterUpload\Model\UploadSearchResult"/>
+</config>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © Websolute spa. All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="transporter_upload" resource="default" engine="innodb" comment="Transporter Upload Table">
+        <column xsi:type="int" name="upload_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="int" name="activity_id" padding="10" unsigned="true" nullable="false"/>
+        <column xsi:type="varchar" name="uploader_type" nullable="false" length="255"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="255"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Row Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Row Modification Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="upload_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="TRANSPORTER_UPLOAD_ACTIVITY_ID_UNIQUE">
+            <column name="activity_id"/>
+            <column name="uploader_type"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="TRANSPORTER_UPLOAD_ID_ACTIVITY_ID"
+                    table="transporter_upload" column="activity_id"
+                    referenceTable="transporter_activity" referenceColumn="activity_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="TRANSPORTER_ACTIVITY_ID" indexType="btree">
+            <column name="activity_id"/>
+        </index>
+    </table>
+</schema>
