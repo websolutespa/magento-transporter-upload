@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright © Websolute spa. All rights reserved.
- * See COPYING.txt for license details.
+ * See LICENSE and/or COPYING.txt for license details.
  */
 
 declare(strict_types=1);
@@ -112,7 +112,6 @@ class UploadRepository implements UploadRepositoryInterface
         $collection = $this->collectionFactory->create();
         $collection->addFieldToFilter(UploadModel::ACTIVITY_ID, ['eq' => $activityId]);
         $collection->addFieldToFilter(UploadModel::UPLOADER_TYPE, ['eq' => $uploaderType]);
-        $collection->load();
 
         /** @var UploadModel $upload */
         if ($collection->count()) {
@@ -151,7 +150,6 @@ class UploadRepository implements UploadRepositoryInterface
         $collection = $this->collectionFactory->create();
         $collection->addFieldToFilter(UploadModel::ACTIVITY_ID, ['eq' => $activityId]);
         $collection->addFieldToFilter(UploadModel::UPLOADER_TYPE, ['eq' => $uploaderType]);
-        $collection->load();
 
         if (!$collection->count()) {
             throw new NoSuchEntityException(__(
@@ -176,7 +174,6 @@ class UploadRepository implements UploadRepositoryInterface
     {
         $collection = $this->collectionFactory->create();
         $collection->addFieldToFilter(UploadModel::ACTIVITY_ID, ['eq' => $activityId]);
-        $collection->load();
 
         /** @var UploadInterface[] $uploads */
         $uploads = $collection->getItems();
